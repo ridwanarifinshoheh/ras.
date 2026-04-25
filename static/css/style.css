@@ -548,3 +548,13 @@ img {
 html {
     scroll-behavior: smooth;
 }
+
+@media (max-width: 480px) {
+    .project-actions {
+        grid-template-columns: 1fr !important;
+    }
+
+    .project-actions a {
+        width: 100%;
+    }
+}
