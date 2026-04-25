@@ -583,3 +583,17 @@ html {
     justify-content: center;
     align-items: center;
 }
+
+.contact-content {
+    max-width: 320px;
+    margin: auto;
+}
+
+.contact-email {
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.contact-email:hover {
+    opacity: 1;
+}
