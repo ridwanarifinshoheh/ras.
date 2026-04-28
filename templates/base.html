@@ -1,35 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ridwan — Futuristic Portfolio</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg fixed-top px-3 glass">
+<nav class="navbar navbar-expand-lg fixed-top glass">
   <div class="container">
 
     <a class="navbar-brand brand-text" href="/">RAS.</a>
 
-    <!-- TOGGLE BUTTON -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+    <!-- 🔥 TOGGLE FIX -->
+    <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navMenu">
-      <div class="ms-auto d-flex align-items-center gap-3 flex-column flex-lg-row mt-3 mt-lg-0">
+      <div class="ms-auto nav-links">
         <a href="/gallery">Work</a>
         <a href="/tentang">About</a>
         <a href="/kontak">Contact</a>
 
-        <label class="switch">
+        <label class="switch ms-3">
           <input type="checkbox" id="theme-toggle">
           <span class="slider"></span>
         </label>
@@ -39,19 +38,21 @@
   </div>
 </nav>
 
-<div id="page">
+<main id="page">
   {% block content %}{% endblock %}
-</div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>© <span id="year"></span> Ridwan Arifin Shoheh. All rights reserved.</p>
+  </div>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
 const toggle = document.getElementById("theme-toggle");
-
-const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-let theme = localStorage.getItem("theme");
-
-if (!theme) theme = systemDark ? "dark" : "light";
+let theme = localStorage.getItem("theme") || "dark";
 
 applyTheme(theme);
 toggle.checked = theme === "light";
@@ -65,74 +66,9 @@ toggle.addEventListener("change", () => {
 function applyTheme(mode) {
   document.body.classList.toggle("light-mode", mode === "light");
 }
+
+document.getElementById("year").textContent = new Date().getFullYear();
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
-
-<div id="particles"></div>
-
-<script>
-tsParticles.load("particles", {
-  background: { color: "transparent" },
-  particles: {
-    number: { value: 40 },
-    color: { value: ["#7c3aed", "#06b6d4"] },
-    opacity: { value: 0.3 },
-    size: { value: 2 },
-    move: {
-      enable: true,
-      speed: 0.6
-    }
-  }
-});
-</script>
-
-<div class="cursor-glow"></div>
-
-<script>
-const cursor = document.querySelector(".cursor-glow");
-
-document.addEventListener("mousemove", e => {
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
-});
-</script>
-
-<script>
-const page = document.getElementById("page");
-
-/* Fade IN saat load */
-window.addEventListener("load", () => {
-  page.classList.add("active");
-});
-
-/* Fade OUT saat klik link */
-document.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", function(e) {
-    const href = this.getAttribute("href");
-
-    if (href && href.startsWith("/")) {
-      e.preventDefault();
-      page.classList.remove("active");
-
-      setTimeout(() => {
-        window.location.href = href;
-      }, 300);
-    }
-  });
-});
-    </script>
-    <footer class="footer">
-      <div class="container text-center">
-        <p>
-          © <span id="year"></span> Ridwan Arifin Shoheh. All rights reserved.
-        </p>
-      </div>
-    </footer>
-
-    <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
 
 </body>
 </html>

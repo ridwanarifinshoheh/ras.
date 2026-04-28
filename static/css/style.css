@@ -1,19 +1,13 @@
-/* ======================
-   COLOR SYSTEM
-====================== */
-
 :root {
     --bg: #07070a;
     --text: #ffffff;
     --muted: #a0a0b0;
     --card: #111118;
     --border: #1f1f2e;
-
     --primary: #7c3aed;
     --secondary: #06b6d4;
 }
 
-/* LIGHT MODE */
 body.light-mode {
     --bg: #f9fafb;
     --text: #111;
@@ -22,35 +16,44 @@ body.light-mode {
     --border: #e5e5e5;
 }
 
-/* ======================
-   GLOBAL
-====================== */
-
+/* GLOBAL */
 body {
     font-family: 'Inter', sans-serif;
     background: var(--bg);
     color: var(--text);
-    transition: 0.3s;
+    padding-top: 90px;
 }
 
-/* ======================
-   NAVBAR
-====================== */
-
+/* NAVBAR */
 .glass {
-    background: rgba(10,10,20,0.6);
     backdrop-filter: blur(12px);
+    background: rgba(10,10,20,0.7);
+    border-bottom: 1px solid var(--border);
 }
 
-.brand-text {
+body.light-mode .glass {
+    background: rgba(255,255,255,0.85);
+}
+
+.nav-links a {
+    margin-left: 20px;
     color: var(--text);
-    font-weight: 700;
 }
 
-/* ======================
-   HERO
-====================== */
+/* 🔥 TOGGLE NAVBAR ICON FIX */
+.navbar-toggler {
+    border: none;
+}
 
+.navbar-toggler-icon {
+    filter: invert(1); /* putih di dark */
+}
+
+body.light-mode .navbar-toggler-icon {
+    filter: invert(0); /* hitam di light */
+}
+
+/* HERO */
 .hero {
     min-height: 100vh;
     padding: 120px 20px 60px;
@@ -60,628 +63,118 @@ body {
     text-align: center;
 }
 
-.hero::before {
-    content: "";
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(124,58,237,0.2), transparent);
-    filter: blur(120px);
-    top: 10%;
-    left: 20%;
-    z-index: -1;
+.hero p {
+    max-width: 600px;
+    margin: 10px auto;
+    text-align: center;
 }
-/* ======================
-   TEXT
-====================== */
 
+/* TEXT */
 h1 {
-    font-size: 56px;
-    letter-spacing: -1px;
+    font-size: clamp(28px,5vw,56px);
 }
 
 p {
+    font-size: clamp(14px,2.5vw,16px);
     color: var(--muted);
-    max-width: 600px;
-    margin: auto;
 }
 
-.hero .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.hero p {
-    text-align: center;
-    margin-top: 10px;
-    line-height: 1.7;
-}
-
-/* ======================
-   GRADIENT TEXT
-====================== */
-
-.gradient-text {
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-
-    background-clip: text;              /* standard */
-    -webkit-background-clip: text;      /* chrome/safari */
-
-    -webkit-text-fill-color: transparent;
-}
-
-/* ======================
-   BUTTON GLOW
-====================== */
-
+/* BUTTON */
 .btn-primary-glow {
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    color: white;
-    border: none;
+    background: linear-gradient(90deg,var(--primary),var(--secondary));
     padding: 12px 24px;
     border-radius: 30px;
-    transition: 0.3s;
+    color: white;
 }
 
-.btn-primary-glow:hover {
-    box-shadow: 0 0 20px rgba(124,58,237,0.6);
-}
-
-/* ======================
-   CARD
-====================== */
-
+/* CARD */
 .project-card {
     background: var(--card);
     border-radius: 16px;
-    overflow: hidden;
     border: 1px solid var(--border);
+    overflow: hidden;
     transition: 0.3s;
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
 }
 
-/* ======================
-   BADGE
-====================== */
-
-.badge-skill {
-    background: var(--border);
-    padding: 8px 16px;
-    border-radius: 20px;
-}
-
-/* ======================
-   TOGGLE
-====================== */
-
-.switch {
-  width: 50px;
-  height: 26px;
-  position: relative;
-}
-
-.slider {
-  background: #ccc;
-  border-radius: 50px;
-  position: absolute;
-  inset: 0;
-}
-
-.slider::before {
-  content: "";
-  position: absolute;
-  height: 20px;
-  width: 20px;
-  background: white;
-  border-radius: 50%;
-  top: 3px;
-  left: 3px;
-  transition: 0.3s;
-}
-
-input:checked + .slider::before {
-  transform: translateX(24px);
-}
-
-input {
-  display: none;
-}
-
-#particles {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
-.cursor-glow {
-    position: fixed;
-    width: 220px;
-    height: 220px;
-
-    background: radial-gradient(circle,
-        rgba(124, 58, 237, 0.25),
-        rgba(6, 182, 212, 0.15),
-        transparent 70%
-    );
-
-    filter: blur(40px);
-    pointer-events: none;
-    border-radius: 50%;
-
-    transform: translate(-50%, -50%);
-    z-index: 0;
-}
-
-.project-card:hover {
-    box-shadow: 0 0 25px rgba(124,58,237,0.3);
-}
-#loader {
-    display: none !important;
-}
-
-/* PAGE FADE SYSTEM */
-#page {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.5s ease;
-}
-
-#page.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-#page {
-    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* LINK NORMAL */
-a {
-    text-decoration: none;
-    color: var(--text);
-}
-
-/* HOVER tetap clean */
-a:hover {
-    text-decoration: none;
-}
-
-/* NAVBAR TEXT FIX */
-.navbar a,
-.navbar-brand {
-    color: var(--text) !important;
-}
-
-/* NAVBAR BACKGROUND */
-.glass {
-    background: rgba(10, 10, 20, 0.6);
-    backdrop-filter: blur(12px);
-}
-.navbar {
-    border-bottom: 1px solid var(--border);
-}
-
-/* LIGHT MODE NAVBAR */
-body.light-mode .glass {
-    background: rgba(255, 255, 255, 0.8);
-}
-
-/* NAVBAR WRAPPER */
-.navbar {
-    color: var(--text);
-}
-
-/* SEMUA TEXT DI NAVBAR */
-.navbar,
-.navbar * {
-    color: var(--text) !important;
-}
-
-/* DARK MODE */
-.glass {
-    background: rgba(10, 10, 20, 0.7);
-}
-
-/* LIGHT MODE */
-body.light-mode .glass {
-    background: rgba(255, 255, 255, 0.85);
-}
-
-/* PROFILE IMAGE */
-.profile-img {
-    width: 200px;
-    border-radius: 50%;
-    border: 3px solid var(--primary);
-    box-shadow: 0 0 20px rgba(124,58,237,0.4);
-    
-}
-
-.profile-img {
-    display: block;
-    margin: 0 auto 20px auto;
-}
-
-/* SECTION TITLE */
-.section-title {
-    margin-bottom: 20px;
-}
-
-/* TIMELINE */
-.timeline {
-    border-left: 2px solid var(--border);
-    padding-left: 30px;
-}
-
-.timeline-item {
-    margin-bottom: 30px;
-    position: relative;
-}
-
-.timeline-item::before {
-    content: "";
-    position: absolute;
-    left: -16px;
-    top: 5px;
-    width: 10px;
-    height: 10px;
-    background: var(--primary);
-    border-radius: 50%;
-}
-
-.timeline-item h5 {
-    margin-bottom: 5px;
-}
-
-.timeline-item span {
-    font-size: 14px;
-    color: var(--muted);
-}
-
-/* WRAPPER */
-.about-text-wrapper {
-    max-width: 750px;
-    margin: auto;
-}
-
-/* PARAGRAF */
-.about-text {
-    text-align: justify;
-    text-justify: inter-word;
-    line-height: 1.8;
-
-    hyphens: auto;
-    -webkit-hyphens: auto;
-    -ms-hyphens: auto;
-}
-
-/* SPACING PARAGRAF */
-.about-text p {
-    margin-bottom: 18px;
-}
-
-.btn-wa {
-    display: inline-block;
-    padding: 12px 20px;
-    border-radius: 30px;
-
-    background: linear-gradient(90deg, #25D366, #128C7E);
-    color: white;
-    font-weight: 500;
-
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.btn-wa:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 20px rgba(37,211,102,0.5);
-}
-p {
-    margin: 10px 0;
-}
-
-/* WRAPPER */
-.project-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-/* tombol auto rata */
-.project-actions {
-    display: grid;
-    gap: 10px;
-}
-
-/* otomatis sesuai jumlah tombol */
-.project-actions:has(a:nth-child(1):nth-last-child(1)) {
-    grid-template-columns: 1fr;
-}
-
-.project-actions:has(a:nth-child(2):nth-last-child(2)) {
-    grid-template-columns: 1fr 1fr;
-}
-
-.project-actions:has(a:nth-child(3):nth-last-child(3)) {
-    grid-template-columns: 1fr 1fr;
-}
-
-/* tombol ke-3 full width */
-.project-actions a:nth-child(3) {
-    grid-column: span 2;
-}
-
-.btn-future {
-    width: auto;
-}
-
-@media (max-width: 480px) {
-    .btn-future {
-        width: 100%;
-        text-align: center;
-    }
-}
-
+/* IMAGE */
 .project-img {
     width: 100%;
     height: 220px;
     object-fit: cover;
 }
 
-@media (max-width: 768px) {
-    .project-img {
-        height: 180px;
-    }
+/* BUTTON GRID */
+.project-actions {
+    display: grid;
+    gap: 10px;
+    margin-top: 15px;
 }
 
-/* BASE BUTTON */
+.project-actions a {
+    width: 100%;
+    text-align: center;
+}
+
+.project-actions:has(a:nth-child(2)) {
+    grid-template-columns: 1fr 1fr;
+}
+
+.project-actions:has(a:nth-child(3)) a:nth-child(3) {
+    grid-column: span 2;
+}
+
+/* BUTTON STYLE */
 .btn-future {
-    padding: 10px 18px;
+    padding: 10px;
     border-radius: 30px;
-    font-size: 14px;
-
-    text-decoration: none;
     color: white;
-
-    position: relative;
-    overflow: hidden;
-
-    transition: all 0.3s ease;
 }
 
-/* PREVIEW (glass style) */
 .btn-preview {
     background: rgba(255,255,255,0.05);
     border: 1px solid var(--border);
-    color: var(--text);
 }
 
-/* DOWNLOAD (gradient glow) */
-.btn-download {
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-}
-
-/* LYNK (dark glass + neon border) */
 .btn-lynk {
-    background: transparent;
     border: 1px solid var(--primary);
     color: var(--primary);
 }
 
-/* HOVER EFFECT */
-.btn-future:hover {
-    transform: translateY(-3px);
-}
-
-/* GLOW EFFECT */
-.btn-download:hover {
-    box-shadow: 0 0 20px rgba(124,58,237,0.5);
-}
-
-/* BORDER GLOW */
-.btn-lynk:hover {
-    background: rgba(124,58,237,0.1);
-    box-shadow: 0 0 10px rgba(124,58,237,0.3);
-}
-
-/* PREVIEW HOVER */
-.btn-preview:hover {
-    background: rgba(255,255,255,0.1);
-}
-
-/*Fix Mobile*/
-@media (max-width: 768px) {
-    .about-text {
-        text-align: justify;
-        padding: 0 10px;
-        line-height: 1.9;
-    }
-}
-
-/* WHATSAPP BUTTON */
 .btn-wa {
-    background: linear-gradient(90deg, #25D366, #128C7E);
-    color: white;
+    background: linear-gradient(90deg,#25D366,#128C7E);
 }
 
-/* HOVER EFFECT */
-.btn-wa:hover {
-    box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
-    transform: translateY(-3px);
+/* ABOUT */
+.about-text {
+    line-height: 1.8;
 }
 
-h1 {
-    font-size: clamp(28px, 5vw, 56px);
-}
-
-h2 {
-    font-size: clamp(22px, 4vw, 36px);
-}
-
-p {
-    font-size: clamp(14px, 2.5vw, 16px);
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-.container {
-    padding-left: 16px;
-    padding-right: 16px;
-}
-
-@media (max-width: 768px) {
-    .mt-5 {
-        margin-top: 80px !important;
-    }
-}
-
-@media (max-width: 768px) {
-    .cursor-glow {
-        display: none;
-    }
-}
-
-@media (max-width: 768px) {
-    .about-text {
-        font-size: 15px;
-        line-height: 1.9;
-    }
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-@media (max-width: 480px) {
-    .project-actions {
-        grid-template-columns: 1fr !important;
-    }
-
-    .project-actions a {
-        width: 100%;
-    }
-}
-
-.contact-box {
-    text-align: center;
-}
-
-.contact-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-}
-
-/* EMAIL */
-.contact-email {
-    margin: 0;
-    text-align: center;
-    font-size: 16px;
-}
-
-/* BUTTON FIX */
-.btn-wa {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.contact-content {
-    max-width: 320px;
-    margin: auto;
-}
-
-.contact-email {
-    opacity: 0.8;
-    transition: 0.3s;
-}
-
-.contact-email:hover {
-    opacity: 1;
-}
-
-body {
-    padding-top: 90px; /* tinggi navbar */
-}
-
+/* CONTACT */
 .contact-box {
     margin-top: 90px;
-}
-
-@media (max-width: 768px) {
-    .contact-box {
-        margin-top: 80px;
-    }
-}
-
-/* ======================
-   FOOTER
-====================== */
-.footer {
-    margin-top: 80px;
-    padding: 40px 0;
-    border-top: 1px solid var(--border);
     text-align: center;
-
-    background: linear-gradient(
-        to top,
-        rgba(124,58,237,0.05),
-        transparent
-    );
 }
 
-/* ======================
-   TOGGLE IMPROVED
-====================== */
-
-/* default (dark mode) */
-.slider {
-  background: rgba(255,255,255,0.2);
-  border-radius: 50px;
-  position: absolute;
-  inset: 0;
-  transition: 0.3s;
+/* FOOTER */
+.footer {
+    margin-top: 60px;
+    padding: 30px 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
 }
 
-/* knob */
-.slider::before {
-  content: "";
-  position: absolute;
-  height: 20px;
-  width: 20px;
-  background: white;
-  border-radius: 50%;
-  top: 3px;
-  left: 3px;
-  transition: 0.3s;
+.footer p {
+    margin: 0;
 }
 
-/* saat AKTIF (light mode) */
-input:checked + .slider {
-  background: #e5e5e5;
-}
-
-/* knob geser */
-input:checked + .slider::before {
-  transform: translateX(24px);
-}
-
-/* 🔥 DARK MODE (PUTIH CLEAN) */
-body:not(.light-mode) .slider {
-  background: rgba(255,255,255,0.3);
-}
-
-/* glow halus */
-body:not(.light-mode) .slider::before {
-  box-shadow: 0 0 8px rgba(255,255,255,0.6);
+/* RESPONSIVE */
+@media (max-width:768px){
+    .project-img {
+        height:180px;
+    }
 }
