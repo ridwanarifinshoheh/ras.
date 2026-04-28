@@ -639,3 +639,49 @@ body {
         transparent
     );
 }
+
+/* ======================
+   TOGGLE IMPROVED
+====================== */
+
+/* default (dark mode) */
+.slider {
+  background: rgba(255,255,255,0.2);
+  border-radius: 50px;
+  position: absolute;
+  inset: 0;
+  transition: 0.3s;
+}
+
+/* knob */
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  background: white;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: 0.3s;
+}
+
+/* saat AKTIF (light mode) */
+input:checked + .slider {
+  background: #e5e5e5;
+}
+
+/* knob geser */
+input:checked + .slider::before {
+  transform: translateX(24px);
+}
+
+/* 🔥 DARK MODE (PUTIH CLEAN) */
+body:not(.light-mode) .slider {
+  background: rgba(255,255,255,0.3);
+}
+
+/* glow halus */
+body:not(.light-mode) .slider::before {
+  box-shadow: 0 0 8px rgba(255,255,255,0.6);
+}
